@@ -1,0 +1,20 @@
+name = "Hintz2026Formalization"
+version = "0.1.0"
+keywords = ["Lean", "formalization", "Kerr-Newman"]
+defaultTargets = ["Hintz2026"]
+
+leanOptions = { autoImplicit = false }
+moreLeanArgs = ["-DautoImplicit=false"]
+moreServerArgs = ["-DautoImplicit=false"]
+
+[[lean_lib]]
+name = "Hintz2026"
+
+[[lean_exe]]
+name = "MainAudit"
+root = "audit.MainAudit"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "0df444a360eaa60ab8c11dca51a86af692955474"
