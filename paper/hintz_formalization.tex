@@ -1,0 +1,1139 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={A Local Matrix-Integrating-Factor Equivalence for Kerr--Newman Perturbation Systems},
+pdfauthor={He Wang; GPT-6.1 Sol; Claude Code Opus 5.5},pdfsubject={Local equivalence of coupled first-order perturbation systems}}
+
+\allowdisplaybreaks[1]
+\setlist{leftmargin=*,itemsep=2pt,topsep=3pt}
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\I}{\mathrm i}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\Uext}{\mathcal U}
+\newcommand{\D}{\mathcal D}
+\newcommand{\Lop}{\mathcal L}
+\newcommand{\Res}{\mathcal R}
+\newcommand{\mat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\cE}{\mathcal E}
+
+\title{\textbf{A Local Matrix-Integrating-Factor Equivalence\\
+for Kerr--Newman Perturbation Systems}}
+\author{He Wang\thanks{ORCID: \href{https://orcid.org/0000-0002-1353-391X}{0000-0002-1353-391X}.}
+\and GPT-6.1 Sol\thanks{AI contributor (OpenAI): assistance with mathematical exposition, drafting, and manuscript checks.}
+\and Claude Code Opus 5.5\thanks{AI contributor (Anthropic).}}
+\date{Draft, 29 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We establish a local equivalence between two coupled first-order systems
+for perturbations of a subextremal Kerr--Newman black hole.  On the exterior
+coordinate patch \(r>r_+\), \(0<\theta<\pi\), we construct chiral
+two-component fields from each of the positive- and negative-spin
+four-field systems.  A parameter-dependent matrix \(X(r,\theta)\) has
+constant nonzero determinant and satisfies a first-order integrating-factor
+equation.  These identities remove the matrix connection and yield an
+explicit transformed system.  We prove both directions of the equivalence,
+including the inverse field maps and all nonvanishing conditions needed in
+the calculation.  The result holds pointwise for every real frequency and
+azimuthal parameter and arbitrary smooth complex fields on the patch.  It
+does not assert a separation theorem, a global boundary-value result, or
+mode stability; those are distinct analytic questions.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Kerr--Newman; Einstein--Maxwell perturbations;
+matrix integrating factor; chiral variables; first-order systems.
+
+\section{Introduction and main result}
+
+The perturbation equations of a charged rotating black hole couple
+spin-two and spin-one radiative degrees of freedom.  Hintz's
+first-order formulation \cite{Hintz2026} treats modes with dependence
+\(\exp(-\I\omega t+\I m\phi)\) on the stationary and azimuthal coordinates.
+In the formulation considered here, each spin orientation is described by four complex
+fields.  A particular chiral recombination packages those fields into two
+complex two-vectors.  The resulting system contains a matrix connection
+\(A\).  The key identity is that a second matrix \(X\) differentiates
+according to that same connection.  Multiplying the chiral variables by
+\(\adj(X)\) and \(X^\dagger\) then removes the connection from the
+derivatives.  This paper gives a detailed verification of that local
+transformation, with explicit residual identities for both spin signs.
+The equations and transformation originate in \cite{Hintz2026}; our
+purpose is to expose the complete chain of identities and the hypotheses
+under which both directions are valid.
+
+We retain the names system (1), system (4), and system (7)
+from \cite{Hintz2026} to distinguish the original, chiral, and
+transformed formulations.  Displayed equations in this paper have their
+own section-based numbering.  We write \(\rho=r+\I a\cos\theta\) for
+the factor denoted \(\bar\rho\) in \cite{Hintz2026}, and use
+\(X^\dagger\) for complex conjugate transpose; the source writes this
+matrix as \(X^*\).  The spin sign \(\varsigma=\pm1\) labels the two
+four-field sectors, each of which contains the coupled gravitational and
+electromagnetic components.
+
+We state precisely the local claim proved below.  Let
+\begin{equation}
+ M>0,\qquad Q\neq0,\qquad a^2+Q^2<M^2,
+\label{eq:parameters}
+\end{equation}
+and define
+\begin{equation}
+ \Delta(r)=r^2-2Mr+a^2+Q^2,\qquad
+ r_+=M+\sqrt{M^2-a^2-Q^2}.
+\label{eq:delta}
+\end{equation}
+In geometrized units, \(M\) is the mass, \(Ma\) the angular momentum,
+and \(Q\) the electric charge.
+The domain is the open exterior patch
+\begin{equation}
+ \Uext=\{(r,\theta)\in\R^2:r>r_+,\ 0<\theta<\pi\}.
+\label{eq:domain}
+\end{equation}
+For real \(\omega,m\), let \(F=(\psi_2,\psi_1,k,s)\) denote a
+positive-spin field and \(G=(\psi_{-2},\psi_{-1},n,\ell)\) a
+negative-spin field.
+
+\begin{theorem}[Local equivalence of systems (1), (4), and (7)]
+\label{thm:main}
+Suppose the parameters satisfy \eqref{eq:parameters}.  For every
+\(\omega,m\in\R\), every \(C^\infty\) positive-spin field \(F\) on
+\(\Uext\), and each \(x\in\Uext\), the four positive-spin equations of
+system (1) hold at \(x\) if and only if the transformed fields
+\[
+ z_+=\adj(X)y_+,\qquad z_-=X^\dagger y_-
+\]
+satisfy system (7) at \(x\).  Here \(y_\pm\) are the chiral combinations
+defined in \eqref{eq:chiral-positive}, and \(X\) is the matrix in
+\eqref{eq:X}.
+
+The same equivalence holds for every \(C^\infty\) negative-spin field
+\(G\), using the negative-spin chiral combinations
+\eqref{eq:chiral-negative}.  In both sectors the result is pointwise on
+all of \(\Uext\), and hence also holds when the pointwise equivalence is
+quantified over the entire patch.
+\end{theorem}
+
+The statement concerns equivalence of differential equations under an
+explicit field transformation.  It does not claim existence or uniqueness
+of solutions with prescribed boundary data.  In particular, it is not a
+global mode-stability theorem.
+
+\section{Geometry, operators, and the original system}
+\label{sec:original}
+
+\subsection{Exterior identities}
+
+On \(\Uext\), the assumptions imply
+\begin{equation}
+ \Delta>0,\qquad \sin\theta>0,\qquad Q^2-M^2\neq0.
+\label{eq:positivity}
+\end{equation}
+Indeed, writing \(r_-=M-\sqrt{M^2-a^2-Q^2}\), one has
+\(\Delta=(r-r_+)(r-r_-)\), so \(r>r_+\) implies \(\Delta>0\).
+Write
+\begin{equation}
+ \rho=r+\I a\cos\theta,\qquad
+ \rho^*=r-\I a\cos\theta=\overline{\rho}.
+\label{eq:rho}
+\end{equation}
+Since \(r>r_+>0\), neither \(\rho\) nor \(\rho^*\) vanishes.  Thus all
+expressions below with denominators \(\Delta,\sin\theta,\rho,\rho^*\), or
+\(Q\) are defined throughout the stated domain.  These are the only
+domain-level exclusions used in the algebraic transformations.
+
+\subsection{Physical meaning of the four-field variables}
+\label{sec:physical-fields}
+
+For orientation, we record the field conventions of
+\cite{Hintz2026}.  In its Newman--Penrose tetrad and gauge, the
+linearized Weyl scalars are rescaled as
+\begin{align}
+ \psi_2&=\Psi_0^{(1)},&
+ \psi_1&=\sqrt2\,\rho^*\Psi_1^{(1)},&
+ \psi_{-1}&=\frac{(\rho^*)^3}{\sqrt2}\Psi_3^{(1)},&
+ \psi_{-2}&=(\rho^*)^4\Psi_4^{(1)}.
+ \label{eq:physical-weyl}
+\end{align}
+The remaining fields are rescaled linearized spin coefficients:
+\begin{equation}
+ k=\frac{\kappa^{(1)}}{\sqrt2\,(\rho^*)^2},\qquad
+ s=\frac{\rho\,\sigma^{(1)}}{(\rho^*)^2},\qquad
+ n=\frac{\rho\rho^*}{\sqrt2}\nu^{(1)},\qquad
+ \ell=\frac{\rho^*}{2}\lambda^{(1)}.
+ \label{eq:physical-spin}
+\end{equation}
+The superscript \((1)\) here denotes linearization.  The lower-case
+subscripts on \(\psi_{\pm2},\psi_{\pm1}\) label spin weights; upper-case
+subscripts follow the Newman--Penrose numbering of the Weyl scalars.
+Each quartet combines curvature and connection data, with the
+Einstein--Maxwell coupling encoded in the first-order system below.
+The dictionary \eqref{eq:physical-weyl}--\eqref{eq:physical-spin}
+provides physical context from \cite{Hintz2026}; our proof starts with
+that system and treats its four fields as arbitrary smooth functions.
+
+\subsection{Mode operators}
+
+For real mode parameters \(\omega,m\), set
+\begin{equation}
+ K(r)=-(r^2+a^2)\omega+am,\qquad
+ \widehat Q(\theta)=-a\omega\sin\theta+\frac{m}{\sin\theta}.
+\label{eq:KQ}
+\end{equation}
+For a complex-valued field \(f=f(r,\theta)\), define
+\begin{align}
+ \D_j f&=\partial_r f+
+ \left(\frac{\I K}{\Delta}+j\frac{\Delta'}{\Delta}\right)f,
+&
+ \D_j^\dagger f&=\partial_r f+
+ \left(-\frac{\I K}{\Delta}+j\frac{\Delta'}{\Delta}\right)f,
+\label{eq:Doperators}\\
+ \Lop_j f&=\partial_\theta f+
+ \left(\widehat Q+j\cot\theta\right)f,
+&
+ \Lop_j^\dagger f&=\partial_\theta f+
+ \left(-\widehat Q+j\cot\theta\right)f.
+\label{eq:Loperators}
+\end{align}
+The daggers on \(\D_j^\dagger\) and \(\Lop_j^\dagger\) specify the
+displayed sign changes; no Hilbert-space adjoint or measure is being
+introduced.  In contrast, a dagger on a matrix always means its complex
+conjugate transpose.
+The complex first-order derivatives used in the proof are
+\begin{equation}
+ D_-=\sqrt{\Delta}\,\partial_r-\I\,\partial_\theta,\qquad
+ D_+=\sqrt{\Delta}\,\partial_r+\I\,\partial_\theta.
+\label{eq:Dpm}
+\end{equation}
+They act componentwise on vector- and matrix-valued fields.
+
+\subsection{Positive-spin residuals}
+
+Set
+\begin{equation}
+ F_\pm=3\left(M-\frac{Q^2}{\rho}\right)
+ \mathbin{\pm}\frac{Q^2\rho^*}{\rho^2}.
+\label{eq:Fpm}
+\end{equation}
+The positive-spin equations are the vanishing of the following four
+residuals:
+\begin{align}
+ \Res_{1a}={}&
+ \left(\Lop_2-\frac{3\I a\sin\theta}{\rho^*}\right)\psi_2
+ -\left(\D_0+\frac{3}{\rho^*}\right)\psi_1+2kF_+,
+\label{eq:R1a}\\
+ \Res_{1b}={}&
+ \Delta\left(\D_2^\dagger-\frac{3}{\rho^*}\right)\psi_2
+ +\left(\Lop_{-1}^\dagger+\frac{3\I a\sin\theta}{\rho^*}\right)\psi_1
+ -2sF_-,
+\label{eq:R1b}\\
+ \Res_{1c}={}&
+ \left(\D_0+\frac{3}{\rho^*}\right)s
+ -\left(\Lop_{-1}^\dagger+\frac{3\I a\sin\theta}{\rho^*}\right)k
+ -\frac{\rho}{(\rho^*)^2}\psi_2,
+\label{eq:R1c}\\
+ \Res_{1d}={}&
+ \Delta\left(\D_2^\dagger-\frac{3}{\rho^*}\right)k
+ +\left(\Lop_2-\frac{3\I a\sin\theta}{\rho^*}\right)s
+ -\frac{2\rho}{(\rho^*)^2}\psi_1.
+\label{eq:R1d}
+\end{align}
+Thus system (1) is \(\Res_{1a}=\Res_{1b}=\Res_{1c}=\Res_{1d}=0\).
+
+For the negative-spin system, apply the replacements
+\begin{equation}
+ \psi_2\mapsto\psi_{-2},\qquad
+ \psi_1\mapsto-\psi_{-1},\qquad
+ k\mapsto-n,\qquad s\mapsto\ell,
+\label{eq:negativefields}
+\end{equation}
+and
+\begin{equation}
+ \Lop_{-1}^\dagger\mapsto\Lop_{-1},\quad
+ \Lop_2\mapsto\Lop_2^\dagger,\quad
+ \D_0+\frac3{\rho^*}\mapsto
+ \Delta\left(\D_{-1}^\dagger+\frac3{\rho^*}\right),\quad
+ \Delta\left(\D_2^\dagger-\frac3{\rho^*}\right)
+ \mapsto\D_0-\frac3{\rho^*}.
+\label{eq:negativeoperators}
+\end{equation}
+Denote the resulting four residuals by
+\(\Res^-_{1a},\ldots,\Res^-_{1d}\).  System (1)\({}^-\) is the
+simultaneous vanishing of these four functions.
+\begin{align}
+ \Res^-_{1a}={}&
+ \left(\Lop_2^\dagger-\frac{3\I a\sin\theta}{\rho^*}\right)\psi_{-2}
+ -\Delta\left(\D_{-1}^\dagger+\frac{3}{\rho^*}\right)(-\psi_{-1})
+ -2nF_+,\label{eq:Rminus1a}\\
+ \Res^-_{1b}={}&
+ \left(\D_0-\frac{3}{\rho^*}\right)\psi_{-2}
+ +\left(\Lop_{-1}+\frac{3\I a\sin\theta}{\rho^*}\right)(-\psi_{-1})
+ -2\ell F_-,\label{eq:Rminus1b}\\
+ \Res^-_{1c}={}&
+ \Delta\left(\D_{-1}^\dagger+\frac{3}{\rho^*}\right)\ell
+ -\left(\Lop_{-1}+\frac{3\I a\sin\theta}{\rho^*}\right)(-n)
+ -\frac{\rho}{(\rho^*)^2}\psi_{-2},\label{eq:Rminus1c}\\
+ \Res^-_{1d}={}&
+ \left(\D_0-\frac{3}{\rho^*}\right)(-n)
+ +\left(\Lop_2^\dagger-\frac{3\I a\sin\theta}{\rho^*}\right)\ell
+ -\frac{2\rho}{(\rho^*)^2}(-\psi_{-1}).\label{eq:Rminus1d}
+\end{align}
+
+\section{Chiral recombination and system (4)}
+\label{sec:chiral}
+
+\subsection{Chiral fields}
+
+Define the positive prefactors
+\begin{equation}
+ P_+=\Delta^{5/4}\sqrt{\sin\theta},\qquad
+ P_-=\Delta^{-3/4}\sqrt{\sin\theta}.
+\label{eq:prefactors}
+\end{equation}
+For \(\varepsilon=\pm1\), the positive-spin chiral vectors are
+\begin{equation}
+ y_\varepsilon^{(+)}
+ =P_+\mat{
+ \psi_2+\varepsilon\I\Delta^{-1/2}\psi_1\\
+ -2Q(k+\varepsilon\I\Delta^{-1/2}s)}.
+\label{eq:chiral-positive}
+\end{equation}
+The negative-spin chiral vectors are
+\begin{equation}
+ y_\varepsilon^{(-)}
+ =P_-\mat{
+ \psi_{-2}-\varepsilon\I\Delta^{1/2}\psi_{-1}\\
+ 2Q(n-\varepsilon\I\Delta^{1/2}\ell)}.
+\label{eq:chiral-negative}
+\end{equation}
+The superscript labels the spin sector and the subscript labels the two
+chiral combinations.  Positivity of \(P_\pm\) on \(\Uext\) follows from
+\eqref{eq:positivity}.
+
+\subsection{The coefficient matrices}
+
+For a spin sign \(\varsigma\in\{+1,-1\}\), define
+\begin{align}
+ c^{(\varsigma)}
+ &=\left(\frac{\varsigma\I K}{\Delta}
+ +\frac3{\rho^*}-\frac{3\Delta'}{4\Delta}\right)\sqrt{\Delta},
+\label{eq:c}\\
+ b^{(\varsigma)}
+ &=-\varsigma\left(-a\omega\sin\theta+\frac{m}{\sin\theta}\right)
+ -\frac32\frac{\cos\theta}{\sin\theta}
+ +\frac{3\I a\sin\theta}{\rho^*},\nonumber\\
+ B^{(\varsigma)}
+ &=\I\mat{
+ b^{(\varsigma)}&
+ \displaystyle\frac{3(M\rho-Q^2)}{Q\rho}\\[4pt]
+ \displaystyle\frac{3Q\rho}{(\rho^*)^2}&-b^{(\varsigma)}
+},
+\label{eq:B}\\
+ A&=\mat{
+ 0&\displaystyle-\I Q\frac{\rho^*}{\rho^2}\\[4pt]
+ \displaystyle\I Q\frac{\rho}{(\rho^*)^2}&0}.
+\label{eq:A}
+\end{align}
+In particular,
+\begin{equation}
+ \tr B^{(\varsigma)}=0,\qquad A^\dagger=A.
+\label{eq:trace-hermitian}
+\end{equation}
+
+\subsection{Intermediate chiral equations}
+
+System (4) is the pair
+\begin{align}
+ D_-y_+^{(\varsigma)}-Ay_+^{(\varsigma)}
+ &=\left(c^{(\varsigma)}I-B^{(\varsigma)}\right)y_-^{(\varsigma)},
+\label{eq:S4minus}\\
+ D_+y_-^{(\varsigma)}+Ay_-^{(\varsigma)}
+ &=\left(c^{(\varsigma)}I+B^{(\varsigma)}\right)y_+^{(\varsigma)}.
+\label{eq:S4plus}
+\end{align}
+The \(I\) multiplying \(c^{(\varsigma)}\) is the \(2\times2\) identity.
+
+\begin{proposition}[Exact residual identities for chiralization]
+\label{prop:residual}
+Let \(\cE_-^{(\pm)}\) be the left side of \eqref{eq:S4minus} and
+\(\cE_+^{(\pm)}\) the left side of \eqref{eq:S4plus} after moving the
+right side to the left.  For positive spin, their components are
+\begin{align}
+ \cE_{-,0}^{(+)}
+ &=P_+\left(-\I\Res_{1a}
+ +\frac{\Res_{1b}}{\sqrt\Delta}\right),&
+ \cE_{-,1}^{(+)}
+ &=P_+\left[-2Q\left(\I\Res_{1c}
+ +\frac{\Res_{1d}}{\sqrt\Delta}\right)\right],
+\label{eq:positive-residuals}\\
+ \cE_{+,0}^{(+)}
+ &=P_+\left(\I\Res_{1a}
+ +\frac{\Res_{1b}}{\sqrt\Delta}\right),&
+ \cE_{+,1}^{(+)}
+ &=P_+\left[-2Q\left(-\I\Res_{1c}
+ +\frac{\Res_{1d}}{\sqrt\Delta}\right)\right].
+\label{eq:positive-residuals-plus}
+\end{align}
+For negative spin, the corresponding identities are
+\begin{align}
+ \cE_{-,0}^{(-)}
+ &=P_-\left(-\I\Res^-_{1a}
+ +\sqrt\Delta\,\Res^-_{1b}\right),&
+ \cE_{-,1}^{(-)}
+ &=P_-\left[2Q\left(-\I\Res^-_{1c}
+ -\sqrt\Delta\,\Res^-_{1d}\right)\right],
+\label{eq:negative-residuals}\\
+ \cE_{+,0}^{(-)}
+ &=P_-\left(\I\Res^-_{1a}
+ +\sqrt\Delta\,\Res^-_{1b}\right),&
+ \cE_{+,1}^{(-)}
+ &=P_-\left[2Q\left(\I\Res^-_{1c}
+ -\sqrt\Delta\,\Res^-_{1d}\right)\right].
+\label{eq:negative-residuals-plus}
+\end{align}
+Consequently, in either spin sector system (1) is equivalent at each
+\(x\in\Uext\) to system (4).
+\end{proposition}
+
+\begin{proof}
+The derivative of a prefactor is computed from
+\(\Delta'=2(r-M)\), \(\partial_r\sqrt\Delta=(r-M)/\sqrt\Delta\),
+and \(\partial_\theta\sqrt{\sin\theta}
+=\cos\theta/(2\sqrt{\sin\theta})\).  It follows that
+\[
+ \frac{D_-P_+}{P_+}
+ =\frac{5\Delta'}{4\sqrt\Delta}-\frac{\I}{2}\cot\theta,\qquad
+ \frac{D_+P_+}{P_+}
+ =\frac{5\Delta'}{4\sqrt\Delta}+\frac{\I}{2}\cot\theta,
+\]
+and the same identities hold for \(P_-\) with \(5/4\) replaced by
+\(-3/4\).  The remaining derivatives needed in the four components are
+\[
+ \partial_r\Delta^{-1/2}
+ =-\frac{\Delta'}{2\Delta^{3/2}},\qquad
+ \partial_r\Delta^{1/2}
+ =\frac{\Delta'}{2\sqrt\Delta}.
+\]
+Apply the product rule to each component of
+\eqref{eq:chiral-positive} and \eqref{eq:chiral-negative}.  Substitute
+the definitions of \(D_\pm\), \(A\), \(B^{(\varsigma)}\), and
+\(c^{(\varsigma)}\).  The coefficients of each field derivative match
+the corresponding terms in \eqref{eq:R1a}--\eqref{eq:R1d} and their
+negative-spin replacements.  The zero-order terms agree by the
+definitions of \(b,c,F_\pm\) and the off-diagonal entries of \(A,B\).
+Collecting terms gives the eight displayed component identities.
+Appendix~\ref{app:component} gives both a worked component and a uniform
+operator calculation covering all eight components.
+
+If all original residuals vanish, the displayed formulas give system (4).
+For the converse, divide each component by its nonzero prefactor.
+With \(S=\sqrt\Delta\), the coefficient matrices for the positive-spin
+residual pairs \((\Res_{1a},\Res_{1b})\) and
+\((\Res_{1c},\Res_{1d})\) are, respectively,
+\[
+ \mat{-\I&S^{-1}\\ \I&S^{-1}},
+ \qquad \mat{\I&S^{-1}\\ -\I&S^{-1}}.
+\]
+Their determinants are \(-2\I/S\) and \(2\I/S\).  The corresponding
+negative-spin matrices are
+\[
+ \mat{-\I&S\\ \I&S},
+ \qquad \mat{-\I&-S\\ \I&-S},
+\]
+with determinants \(-2\I S\) and \(2\I S\).  All four determinants
+are nonzero.  Therefore vanishing of the four chiral residual components
+forces vanishing of the four original residuals in either sector.
+\end{proof}
+
+\begin{remark}[Zeros of the original coupling]
+\label{rem:coupling-zeros}
+The proof divides by \(Q,P_\pm,\sqrt\Delta\), and fixed nonzero
+numerical factors, but never by \(F_+\) or \(F_-\).  Consequently
+their zero sets cause no exception to the equivalence.  Such zeros
+can occur in the physical exterior: when \(a=0\),
+\(F_-=3M-4Q^2/r\).  For example, \(M=1\), \(Q^2=63/64\) gives
+\(r_+=9/8\) and \(F_-(21/16)=0\), with \(21/16>9/8\).
+\end{remark}
+
+\section{The matrix integrating factor}
+\label{sec:integrating}
+
+\subsection{Definition and constant determinant}
+
+Define
+\begin{equation}
+ X(r,\theta)=
+ \mat{
+ \displaystyle Q\frac{\sqrt\Delta+a\sin\theta}{\rho}
+ &\displaystyle-\I\left(M-\frac{Q^2}{\rho}\right)\\[7pt]
+ \displaystyle\I\left(M-\frac{Q^2}{\rho^*}\right)
+ &\displaystyle Q\frac{\sqrt\Delta-a\sin\theta}{\rho^*}
+}.
+\label{eq:X}
+\end{equation}
+Each entry is smooth on \(\Uext\).  To compute the determinant, expand the
+two products in \(X_{00}X_{11}-X_{01}X_{10}\) and multiply by
+\(\rho\rho^*\), which is nonzero on the domain.  Use
+\[
+ \rho\rho^*=r^2+a^2\cos^2\theta,\quad
+ (\sqrt\Delta)^2=r^2-2Mr+a^2+Q^2,\quad
+ \sin^2\theta+\cos^2\theta=1.
+\]
+More explicitly, the numerator is
+\begin{align*}
+ \rho\rho^*\det X
+ &=Q^2(\Delta-a^2\sin^2\theta)
+   -(M\rho-Q^2)(M\rho^*-Q^2)\\
+ &=Q^2(r^2-2Mr+a^2\cos^2\theta+Q^2)\\
+ &\quad-M^2(r^2+a^2\cos^2\theta)+2MrQ^2-Q^4\\
+ &=(Q^2-M^2)(r^2+a^2\cos^2\theta).
+\end{align*}
+Canceling the nonzero factor \(\rho\rho^*\), we obtain
+\begin{equation}
+ \det X=Q^2-M^2.
+\label{eq:detX}
+\end{equation}
+By \eqref{eq:parameters}, this constant is nonzero, so \(X\) is
+invertible everywhere on \(\Uext\).  In dimension two,
+\begin{equation}
+ \adj(X)=(\det X)X^{-1}.
+\label{eq:adjX}
+\end{equation}
+
+\subsection{Differentiating \texorpdfstring{\(X\)}{X}}
+
+Put \(S=\sqrt\Delta\), \(s=\sin\theta\), and \(c_\theta=\cos\theta\).
+The four entries of \(A\) and \(X\) are explicit rational functions of
+\(\rho,\rho^*\), \(S\), and \(s\).  Their derivatives are controlled by
+\begin{align}
+ \Delta'&=2(r-M),&
+ \partial_r\sqrt\Delta&=\frac{r-M}{\sqrt\Delta},\label{eq:delta-derivs}\\
+ \partial_r\rho&=\partial_r\rho^*=1,&
+ \partial_\theta\rho&=-\I a\sin\theta,&
+ \partial_\theta\rho^*&=\I a\sin\theta.\label{eq:rho-derivs}
+\end{align}
+In particular,
+\[
+ D_-\rho=S-as,\qquad D_-\rho^*=S+as,\qquad
+ D_-(S\pm as)=r-M\mp\I a c_\theta.
+\]
+The quotient rule gives the diagonal derivatives explicitly:
+\begin{align}
+ D_-X_{00}
+ &=Q\frac{(r-M-\I a c_\theta)\rho-(S+as)(S-as)}{\rho^2}\nonumber\\*
+ &=Q\frac{(\rho^*-M)\rho-(\Delta-a^2s^2)}{\rho^2}
+ =Q\frac{M\rho^*-Q^2}{\rho^2},\label{eq:X00deriv}\\
+ D_-X_{11}
+ &=Q\frac{(r-M+\I a c_\theta)\rho^*-(S-as)(S+as)}
+ {(\rho^*)^2}\nonumber\\*
+ &=Q\frac{(\rho-M)\rho^*-(\Delta-a^2s^2)}{(\rho^*)^2}
+ =Q\frac{M\rho-Q^2}{(\rho^*)^2}.\label{eq:X11deriv}
+\end{align}
+In the last equalities use
+\(\rho\rho^*=r^2+a^2c_\theta^2\),
+\(s^2+c_\theta^2=1\), and the defining polynomial for \(\Delta\).
+For the off-diagonal entries write
+\(X_{01}=-\I M+\I Q^2/\rho\) and
+\(X_{10}=\I M-\I Q^2/\rho^*\); differentiating the reciprocals gives
+\begin{equation}
+ D_-X_{01}=-\I Q^2\frac{S-as}{\rho^2},\qquad
+ D_-X_{10}=\I Q^2\frac{S+as}{(\rho^*)^2}.
+\label{eq:offdiagderiv}
+\end{equation}
+Direct multiplication of \(A\) and \(X\) yields
+\begin{align}
+ (AX)_{00}&=Q\frac{M\rho^*-Q^2}{\rho^2},&
+ (AX)_{01}&=-\I Q^2\frac{S-as}{\rho^2},\nonumber\\
+ (AX)_{10}&=\I Q^2\frac{S+as}{(\rho^*)^2},&
+ (AX)_{11}&=Q\frac{M\rho-Q^2}{(\rho^*)^2}.
+\label{eq:AXentries}
+\end{align}
+Thus, entry by entry,
+\begin{equation}
+ D_-X=AX.
+\label{eq:DX}
+\end{equation}
+
+\begin{lemma}[Differentiating the inverse]
+\label{lem:inverse}
+On \(\Uext\),
+\begin{equation}
+ D_-(X^{-1})=-X^{-1}A.
+\label{eq:DinvX}
+\end{equation}
+Moreover,
+\begin{equation}
+ D_+(X^\dagger)=X^\dagger A,\qquad
+ D_+\bigl((X^\dagger)^{-1}\bigr)=-A(X^\dagger)^{-1}.
+\label{eq:Dstar}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Differentiate \(X^{-1}X=I\) with \(D_-\).  The product rule and
+\eqref{eq:DX} give
+\[
+ D_-(X^{-1})X+X^{-1}AX=0.
+\]
+Right multiplication by \(X^{-1}\) proves \eqref{eq:DinvX}.  Complex
+conjugation changes \(\I\) to \(-\I\); hence conjugating the first
+identity \eqref{eq:DX} and taking the transpose gives
+\(D_+(X^\dagger)=X^\dagger A^\dagger\).
+Use \(A^\dagger=A\) from \eqref{eq:trace-hermitian}.  Differentiate
+\((X^\dagger)^{-1}X^\dagger=I\) with \(D_+\), and cancel as above, to
+obtain the second identity in \eqref{eq:Dstar}.
+\end{proof}
+
+\begin{proposition}[Residual transport through the integrating factor]
+\label{prop:transport}
+For every smooth two-component field \(v\), one has
+\begin{align}
+ D_-(Xv)-A(Xv)&=X(D_-v),\label{eq:transport-minus}\\
+ D_+\bigl((X^\dagger)^{-1}v\bigr)
+ +A\bigl((X^\dagger)^{-1}v\bigr)
+ &=(X^\dagger)^{-1}(D_+v).\label{eq:transport-plus}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+The product rule gives
+\[
+ D_-(Xv)=(D_-X)v+X(D_-v)=AXv+X(D_-v),
+\]
+which is \eqref{eq:transport-minus}.  Set \(Y=(X^\dagger)^{-1}\).
+Then \eqref{eq:Dstar} gives
+\[
+ D_+(Yv)=(D_+Y)v+Y(D_+v)=-AYv+Y(D_+v),
+\]
+which proves \eqref{eq:transport-plus}.
+\end{proof}
+
+\begin{corollary}[Homogeneous solution correspondence]
+\label{cor:homogeneous}
+At every \(x\in\Uext\),
+\[
+ D_-v=0\quad\Longleftrightarrow\quad D_-(Xv)-A(Xv)=0,
+\]
+and
+\[
+ D_+v=0\quad\Longleftrightarrow\quad
+ D_+\bigl((X^\dagger)^{-1}v\bigr)
+ +A\bigl((X^\dagger)^{-1}v\bigr)=0.
+\]
+\end{corollary}
+
+\begin{proof}
+The forward directions follow from Proposition~\ref{prop:transport}.
+For the reverse directions, \(X\) and \(X^\dagger\) are invertible by
+\eqref{eq:detX}.
+\end{proof}
+
+\section{The transformed system and its equivalence}
+\label{sec:transformation}
+
+\subsection{Definition of system (7)}
+
+For each spin sign, set
+\begin{equation}
+ z_+=\adj(X)y_+,\qquad z_-=X^\dagger y_-,
+\label{eq:z}
+\end{equation}
+and define
+\begin{equation}
+ C^{(\varsigma)}
+ =(\det X)X^{-1}
+ \left(c^{(\varsigma)}I-B^{(\varsigma)}\right)
+ (X^\dagger)^{-1}.
+\label{eq:C}
+\end{equation}
+System (7) is
+\begin{equation}
+ D_-z_+=C^{(\varsigma)}z_-,\qquad
+ D_+z_-=\adj(C^{(\varsigma)})z_+.
+\label{eq:S7}
+\end{equation}
+All coefficients are smooth on \(\Uext\).  The constant determinant
+identity makes both transformations in \eqref{eq:z} invertible.
+
+\subsection{Adjugate identity for the coupling matrix}
+
+For any \(2\times2\) matrix \(T\),
+\(\adj(T)=\tr(T)I-T\).  Since \(\tr B^{(\varsigma)}=0\),
+\begin{equation}
+ \adj(c^{(\varsigma)}I-B^{(\varsigma)})
+ =c^{(\varsigma)}I+B^{(\varsigma)}.
+\label{eq:adjcB}
+\end{equation}
+Since \(X^{-1}=(\det X)^{-1}\adj(X)\) and
+\((X^\dagger)^{-1}=(\det X)^{-1}\adj(X^\dagger)\), the definition
+\eqref{eq:C} can be written
+\[
+ C^{(\varsigma)}
+ =(\det X)^{-1}\adj(X)
+ (c^{(\varsigma)}I-B^{(\varsigma)})\adj(X^\dagger).
+\]
+For \(2\times2\) matrices, \(\adj(UV)=\adj(V)\adj(U)\),
+\(\adj(\adj(U))=U\), and \(\adj(\lambda U)=\lambda\adj(U)\).
+Consequently,
+\begin{align}
+ \adj(C^{(\varsigma)})
+ &=(\det X)^{-1}X^\dagger
+ \adj(c^{(\varsigma)}I-B^{(\varsigma)})X\nonumber\\
+ &=(\det X)^{-1}X^\dagger
+ \left(c^{(\varsigma)}I+B^{(\varsigma)}\right)X.
+\label{eq:adjC}
+\end{align}
+The scalar is real because \(\det X=Q^2-M^2\).
+
+\begin{proposition}[Forward implication: system (4) implies system (7)]
+\label{prop:forward}
+If smooth \(y_+,y_-\) satisfy \eqref{eq:S4minus}--\eqref{eq:S4plus}
+at \(x\in\Uext\), then \(z_+,z_-\) defined by \eqref{eq:z} satisfy
+\eqref{eq:S7} at \(x\).
+\end{proposition}
+
+\begin{proof}
+From \(\adj(X)=(\det X)X^{-1}\), \eqref{eq:DinvX}, and the constancy
+of \(\det X\),
+\[
+ D_-\adj(X)=-(\adj X)A.
+\]
+The product rule therefore gives
+\[
+ D_-(\adj(X)y_+)
+ =-\adj(X)Ay_++\adj(X)D_-y_+.
+\]
+Use \eqref{eq:S4minus}, namely
+\(D_-y_+=Ay_++(cI-B)y_-\).  The connection terms cancel:
+\[
+ D_-z_+=\adj(X)(cI-B)y_-.
+\]
+Since \(y_-=(X^\dagger)^{-1}z_-\), and \(\adj(X)=(\det X)X^{-1}\),
+this is the first equation of \eqref{eq:S7}.
+
+For the other equation, use \(D_+(X^\dagger)=X^\dagger A\):
+\[
+ D_+(X^\dagger y_-)
+ =X^\dagger Ay_-+X^\dagger D_+y_-.
+\]
+Equation \eqref{eq:S4plus} gives
+\(D_+y_-=-Ay_-+(cI+B)y_+\), so
+\[
+ D_+z_-=X^\dagger(cI+B)y_+.
+\]
+Finally, \eqref{eq:adjC} and \(z_+=\adj(X)y_+\) show that
+\[
+ \adj(C)z_+
+ =(\det X)^{-1}X^\dagger(cI+B)X\adj(X)y_+
+ =X^\dagger(cI+B)y_+.
+\]
+Here \(X\adj(X)=(\det X)I\).  This proves the second equation.
+\end{proof}
+
+\begin{proposition}[Reverse implication: system (7) implies system (4)]
+\label{prop:reverse}
+Suppose smooth \(z_+,z_-\) satisfy \eqref{eq:S7} at \(x\in\Uext\).  Define
+\begin{equation}
+ y_+=(\det X)^{-1}Xz_+,\qquad
+ y_-=(X^\dagger)^{-1}z_-.
+\label{eq:inverse-z}
+\end{equation}
+Then \(y_+,y_-\) satisfy \eqref{eq:S4minus}--\eqref{eq:S4plus} at \(x\).
+\end{proposition}
+
+\begin{proof}
+Apply \eqref{eq:transport-minus} with \(v=z_+\).  Since \(\det X\) is
+constant,
+\[
+ D_-y_+-Ay_+
+ =(\det X)^{-1}X(D_-z_+)
+ =(\det X)^{-1}XCz_-.
+\]
+Substitute the definition of \(C\):
+\[
+ (\det X)^{-1}XC
+ =(\det X)^{-1}X(\det X)X^{-1}(cI-B)(X^\dagger)^{-1}
+ =(cI-B)(X^\dagger)^{-1}.
+\]
+As \(y_-=(X^\dagger)^{-1}z_-\), the first equation of system (4)
+follows.
+
+Next apply \eqref{eq:transport-plus} with \(v=z_-\):
+\[
+ D_+y_-+Ay_-=(X^\dagger)^{-1}(D_+z_-)
+ =(X^\dagger)^{-1}\adj(C)z_+.
+\]
+Use \eqref{eq:adjC} and \(y_+=(\det X)^{-1}Xz_+\):
+\[
+ (X^\dagger)^{-1}\adj(C)z_+
+ =(\det X)^{-1}(cI+B)Xz_+
+ =(cI+B)y_+.
+\]
+This is the second equation of system (4).  All cancellations are
+permitted by \(\det X\neq0\).
+\end{proof}
+
+\begin{corollary}[Two-sided equivalence]
+\label{cor:47}
+For either spin sign and every \(x\in\Uext\), system (4) holds at \(x\)
+if and only if system (7) holds at \(x\) for the transformed fields.
+\end{corollary}
+
+\begin{proof}
+Proposition~\ref{prop:forward} proves one direction and
+Proposition~\ref{prop:reverse} the other.  The transformations round-trip:
+\[
+ (\det X)^{-1}X\adj(X)y_+=y_+,\qquad
+ (X^\dagger)^{-1}X^\dagger y_-=y_-.
+\]
+\end{proof}
+
+\section{Return to the four-field variables}
+\label{sec:completion}
+
+Proposition~\ref{prop:residual} identifies the vanishing of the original
+four residuals with system (4), separately for positive and negative spin.
+Corollary~\ref{cor:47} identifies system (4) with system (7).  Their
+composition proves Theorem~\ref{thm:main}.
+
+The chiral map itself has a pointwise algebraic inverse.  For positive
+spin,
+\begin{align}
+ \psi_2&=\frac{y_+^0+y_-^0}{2P_+},&
+ \psi_1&=\frac{\sqrt\Delta\,(y_+^0-y_-^0)}{2\I P_+},\label{eq:inverse-positive-a}\\
+ k&=-\frac{y_+^1+y_-^1}{4QP_+},&
+ s&=-\frac{\sqrt\Delta\,(y_+^1-y_-^1)}{4\I QP_+}.
+\label{eq:inverse-positive-b}
+\end{align}
+For negative spin,
+\begin{align}
+ \psi_{-2}&=\frac{y_+^0+y_-^0}{2P_-},&
+ \psi_{-1}&=-\frac{y_+^0-y_-^0}{2\I\sqrt\Delta\,P_-},\label{eq:inverse-negative-a}\\
+ n&=\frac{y_+^1+y_-^1}{4QP_-},&
+ \ell&=-\frac{y_+^1-y_-^1}{4\I Q\sqrt\Delta\,P_-}.
+\label{eq:inverse-negative-b}
+\end{align}
+Substitution verifies both round trips.  Nonvanishing of \(Q\), \(P_\pm\),
+and \(\sqrt\Delta\) is sufficient for every denominator in these formulas.
+The regularity class is preserved in both directions because all
+coefficients and inverse coefficients are smooth on \(\Uext\).
+
+\subsection{Why the angular derivative is essential}
+
+The angular part of \(D_-\) is essential for this particular matrix.
+If
+\[
+ D_{\mathrm{bad}}=\sqrt\Delta\,\partial_r,
+\]
+then for \(a\neq0\) one has
+\begin{equation}
+ \bigl(D_{\mathrm{bad}}X_{ij}\bigr)_{i,j}\neq AX
+\label{eq:bad-operator}
+\end{equation}
+at every point of \(\Uext\).  Indeed,
+\[
+ \bigl(D_{\mathrm{bad}}X-AX\bigr)_{01}
+ =\I\partial_\theta X_{01}
+ =-\frac{\I aQ^2\sin\theta}{\rho^2}\neq0.
+\]
+All factors in the numerator are nonzero under \(a\neq0\) and the
+standing hypotheses.  As a concrete example, \((M,a,Q)=(2,1,1)\) is
+subextremal and \((r,\theta)=(4,\pi/2)\) lies in its exterior.
+
+\section{Scope and relation to the perturbation problem}
+\label{sec:scope}
+
+The result proved here is local and algebraic in the following precise
+sense: at each exterior point, the two finite systems of differential
+equations have equivalent residuals under the displayed smooth,
+invertible transformations.  The quantification over arbitrary smooth
+fields shows that the equivalence is an identity between differential
+systems, not an assertion that a particular solution exists.
+
+Several mathematically substantial questions are outside this result.
+We do not derive the original equations from the linearized
+Einstein--Maxwell equations; analyze horizon or axis regularity; impose
+ingoing or outgoing boundary conditions; construct angular eigenfunctions;
+derive a radial spectral problem; or prove mode stability.  Nor do we
+claim that \(C^{(\varsigma)}\) separates as a sum of a radial matrix and
+an angular matrix.  Explicit candidate coefficients for such a
+decomposition can be written down, but proving that decomposition is not
+part of the local equivalence established here.
+
+In the physical mode ansatz, the azimuthal number is integral.  The
+identities proved here are algebraic in that parameter and therefore hold
+for every real \(m\), which is a slightly broader statement than the
+physical mode convention.  Likewise, \(\omega\) is real throughout this
+local result; no claim about complex-frequency modes follows.
+
+\section{Proof provenance and reproducibility}
+\label{sec:provenance}
+
+An independently checkable proof archive \cite{Wang2026} accompanies this mathematical
+exposition and records the definitions and derivations of the identities
+used above.  The archived source is version 0.1.0 at
+\href{https://doi.org/10.5281/zenodo.23684720}{doi:10.5281/zenodo.23684720}.
+The archive establishes the local equivalence stated in
+Theorem~\ref{thm:main}; it does not establish the analytic claims excluded
+in Section~\ref{sec:scope}.
+
+\appendix
+\section{A component calculation for the chiral residuals}
+\label{app:component}
+
+\subsection{One positive-spin component}
+
+The residual identities in Proposition~\ref{prop:residual} hold for
+arbitrary fields, before any field equation is imposed.  A worked
+component makes explicit how both derivative and zero-order terms are
+checked.  Consider positive spin and set
+\[
+ S=\sqrt\Delta,\qquad
+ \lambda=\frac{5\Delta'}{4S}-\frac{\I}{2}\cot\theta,\qquad
+ H=\frac{3\I a\sin\theta}{\rho^*},\qquad
+ T=\frac3{\rho^*}.
+\]
+Write \(g_\varepsilon=y_\varepsilon/P_+\), so that
+\[
+ g_\varepsilon^0=\psi_2+\varepsilon\I\psi_1/S,\qquad
+ g_\varepsilon^1=-2Q(k+\varepsilon\I s/S).
+\]
+Since \(D_-P_+=P_+\lambda\),
+\begin{align}
+ \frac{\cE_{-,0}^{(+)}}{P_+}
+ ={}&D_-g_+^0+\lambda g_+^0
+       -A_{01}g_+^1-(c-\I b)g_-^0+B_{01}g_-^1\nonumber\\
+ ={}&(S\partial_r-\I\partial_\theta)\psi_2
+       +(\I\partial_r+S^{-1}\partial_\theta)\psi_1
+       +\alpha\psi_2+\beta\psi_1\nonumber\\
+ &\quad+2Q(A_{01}-B_{01})k
+       +\frac{2\I Q}{S}(A_{01}+B_{01})s,
+\label{eq:component-expand}
+\end{align}
+where
+\begin{equation}
+ \alpha=\lambda-c+\I b,\qquad
+ \beta=\frac{\I}{S}(\lambda+c-\I b)
+                 -\frac{\I\Delta'}{2\Delta}.
+\label{eq:alphabeta}
+\end{equation}
+Here \(b,c,B\) have spin sign \(+1\).  Substituting their definitions,
+and using \(S^2=\Delta\), gives the scalar coefficient checks
+\begin{align}
+ \alpha
+ &=-\I(\widehat Q+2\cot\theta-H)
+     +\frac{-\I K+2\Delta'-\Delta T}{S},
+ \label{eq:alpha-check}\\
+ \beta
+ &=-\frac K\Delta+\I T
+     +\frac{-\widehat Q-\cot\theta+H}{S},
+ \label{eq:beta-check}\\
+ 2Q(A_{01}-B_{01})&=-2\I F_+,\qquad
+ \frac{2\I Q}{S}(A_{01}+B_{01})=-\frac{2F_-}{S}.
+ \label{eq:coupling-check}
+\end{align}
+The expression in \eqref{eq:component-expand}, with these coefficients,
+is exactly \(-\I\Res_{1a}+\Res_{1b}/S\), upon expanding
+\eqref{eq:R1a} and \eqref{eq:R1b}.  This proves the first component of
+\eqref{eq:positive-residuals} without assuming that either residual
+vanishes.
+
+\subsection{A uniform calculation for both spins and both chiralities}
+\label{app:uniform}
+
+The following calculation verifies the other components with no implicit
+change-of-sign convention.  Fix
+\(\varsigma,\varepsilon\in\{+1,-1\}\), let \(S=\sqrt\Delta\), and use
+the following four fields:
+\[
+\begin{array}{c|cccc}
+ \varsigma & u&v&w&t\\ \hline
+ +1&\psi_2&\psi_1&k&s\\
+ -1&\psi_{-2}&-\psi_{-1}&-n&\ell
+\end{array}
+\]
+Define
+\[
+ h=S^{-\varsigma},\qquad
+ P=\Delta^{\varsigma+1/4}\sqrt{\sin\theta},\qquad
+ g_\varepsilon=\mat{u+\varepsilon\I h v\\
+                         -2Q(w+\varepsilon\I h t)}.
+\]
+Thus \(y_\varepsilon=Pg_\varepsilon\) is exactly the chiral field in
+the relevant sector.  In the rest of this calculation \(b,c,B\) have
+spin sign \(\varsigma\); \(H=3\I a\sin\theta/\rho^*\),
+\(T=3/\rho^*\), and \(Z=\rho/(\rho^*)^2\).
+Introduce the scalar differential operators
+\begin{align}
+ \mathsf L&=\partial_\theta+\varsigma\widehat Q+2\cot\theta-H,
+ &\mathsf J&=\partial_\theta-\varsigma\widehat Q-\cot\theta+H,
+ \label{eq:uniform-angular}\\
+ \mathsf U&=S^{1-\varsigma}
+ \left(\partial_r+\frac{\varsigma\I K}{\Delta}
+                 +\frac{\varsigma-1}{2}\frac{\Delta'}{\Delta}+T\right),
+ \label{eq:uniform-U}\\
+ \mathsf V&=S^{1+\varsigma}
+ \left(\partial_r-\frac{\varsigma\I K}{\Delta}
+                 +(1+\varsigma)\frac{\Delta'}{\Delta}-T\right).
+ \label{eq:uniform-V}
+\end{align}
+For \(\varsigma=+1\), the last two are
+\(\D_0+T\) and \(\Delta(\D_2^\dagger-T)\); for
+\(\varsigma=-1\), they are
+\(\Delta(\D_{-1}^\dagger+T)\) and \(\D_0-T\).
+Consequently the original four residuals in either sector are
+\begin{align}
+ \Res_a&=\mathsf L u-\mathsf U v+2F_+w,
+ &\Res_b&=\mathsf V u+\mathsf J v-2F_-t,\nonumber\\
+ \Res_c&=\mathsf U t-\mathsf J w-Zu,
+ &\Res_d&=\mathsf V w+\mathsf L t-2Zv.
+ \label{eq:uniform-original}
+\end{align}
+They are \(\Res_{1a},\ldots,\Res_{1d}\) for positive spin and
+\(\Res^-_{1a},\ldots,\Res^-_{1d}\) for negative spin.
+
+Put
+\[
+ \mathfrak d_\varepsilon=S\partial_r-\varepsilon\I\partial_\theta,
+ \qquad
+ \lambda_\varepsilon
+   =\frac{\mathfrak d_\varepsilon P}{P}
+   =\left(\varsigma+\frac14\right)\frac{\Delta'}{S}
+         -\frac{\varepsilon\I}{2}\cot\theta.
+\]
+In particular,
+\(\mathfrak d_\varepsilon h=-\varsigma h\Delta'/(2S)\).
+For every smooth scalar field \(f\), expansion of the operators gives
+the following four identities:
+\begin{align}
+ (\mathfrak d_\varepsilon+\lambda_\varepsilon-c
+                    +\varepsilon\I b)f
+   &=(-\varepsilon\I\mathsf L+h\mathsf V)f,
+ \label{eq:uniform-op0}\\
+ \mathfrak d_\varepsilon(\varepsilon\I h f)
+   +\varepsilon\I h(\lambda_\varepsilon+c-\varepsilon\I b)f
+   &=(\varepsilon\I\mathsf U+h\mathsf J)f,
+ \label{eq:uniform-op1}\\
+ (\mathfrak d_\varepsilon+\lambda_\varepsilon-c
+                    -\varepsilon\I b)f
+   &=(-\varepsilon\I\mathsf J+h\mathsf V)f,
+ \label{eq:uniform-op2}\\
+ \mathfrak d_\varepsilon(\varepsilon\I h f)
+   +\varepsilon\I h(\lambda_\varepsilon+c+\varepsilon\I b)f
+   &=(\varepsilon\I\mathsf U+h\mathsf L)f.
+ \label{eq:uniform-op3}
+\end{align}
+To check these without suppressing the zero-order terms, observe that
+\[
+ hS^{1+\varsigma}=S,\qquad hS=S^{1-\varsigma}.
+\]
+The zeroth-order coefficient on either side of
+\eqref{eq:uniform-op0} is
+\[
+ -\varepsilon\I(\varsigma\widehat Q+2\cot\theta-H)
+ +\frac{-\varsigma\I K+(1+\varsigma)\Delta'-\Delta T}{S},
+\]
+and that on either side of \eqref{eq:uniform-op1} is
+\[
+ h\left[
+ -\frac{\varepsilon\varsigma K}{S}
+ +\frac{\varepsilon\I(\varsigma-1)\Delta'}{2S}
+ +\varepsilon\I ST-\varsigma\widehat Q-\cot\theta+H
+ \right].
+\]
+For \eqref{eq:uniform-op2}, replace the angular coefficient in
+\eqref{eq:uniform-op0} by
+\(-\varepsilon\I(-\varsigma\widehat Q-\cot\theta+H)\).
+For \eqref{eq:uniform-op3}, replace the final angular expression in
+\eqref{eq:uniform-op1} by
+\(\varsigma\widehat Q+2\cot\theta-H\).
+These four comparisons verify every derivative and multiplication term.
+The off-diagonal coefficients require only
+\begin{align}
+ 2Q(A_{01}-B_{01})&=-2\I F_+,
+ &2\I Q(A_{01}+B_{01})&=-2F_-,\nonumber\\
+ \frac{A_{10}-B_{10}}{2Q}&=-\I Z,
+ &\frac{\I(A_{10}+B_{10})}{2Q}&=-2Z.
+ \label{eq:uniform-couplings}
+\end{align}
+Each follows immediately from \eqref{eq:A}, \eqref{eq:B}, and
+\eqref{eq:Fpm}.
+
+Now let \(\mathfrak E_\varepsilon\) be the chiral residual belonging to
+\(y_\varepsilon\):
+\[
+ \mathfrak E_\varepsilon
+ =\mathfrak d_\varepsilon y_\varepsilon
+   -\varepsilon Ay_\varepsilon
+   -(cI-\varepsilon B)y_{-\varepsilon}.
+\]
+It is \(\cE_-\) when \(\varepsilon=+1\) and \(\cE_+\) when
+\(\varepsilon=-1\).  Apply
+\eqref{eq:uniform-op0}--\eqref{eq:uniform-op3} to \(u,v,w,t\),
+respectively, and use \eqref{eq:uniform-couplings}.  The first component
+becomes
+\begin{align*}
+ P^{-1}\mathfrak E_\varepsilon^0
+ &=(-\varepsilon\I\mathsf L+h\mathsf V)u
+   +(\varepsilon\I\mathsf U+h\mathsf J)v
+   -2\varepsilon\I F_+w-2hF_-t\\
+ &=-\varepsilon\I\Res_a+h\Res_b.
+\end{align*}
+Dividing the second component by \(-2QP\) gives
+\begin{align*}
+ (-2QP)^{-1}\mathfrak E_\varepsilon^1
+ &=(-\varepsilon\I\mathsf J+h\mathsf V)w
+   +(\varepsilon\I\mathsf U+h\mathsf L)t
+   -\varepsilon\I Zu-2hZv\\
+ &=\varepsilon\I\Res_c+h\Res_d.
+\end{align*}
+We have therefore proved the single vector identity
+\begin{equation}
+ P^{-1}\mathfrak E_\varepsilon
+ =\mat{-\varepsilon\I\Res_a+h\Res_b\\
+       -2Q(\varepsilon\I\Res_c+h\Res_d)}.
+ \label{eq:uniform-final}
+\end{equation}
+Taking the two values of \(\varsigma\) and of \(\varepsilon\)
+recovers all eight component identities in
+\eqref{eq:positive-residuals}--\eqref{eq:negative-residuals-plus}.
+
+\begin{thebibliography}{9}
+\bibitem{Hintz2026}
+P.~Hintz,
+\emph{Perturbations of Kerr--Newman black holes: separation and mode
+stability},
+arXiv:2609.33661v1 [gr-qc] (2026).
+\newblock \url{https://arxiv.org/abs/2609.33661}.
+
+\bibitem{Wang2026}
+H.~Wang,
+\emph{Hintz2026: A Lean 4 Formalization of the Local Equivalence of
+Kerr--Newman Perturbation Systems (1) and (7)},
+Zenodo, version 0.1.0 (2026).
+\newblock DOI: \url{https://doi.org/10.5281/zenodo.23684720}.
+\end{thebibliography}
+
+\end{document}
